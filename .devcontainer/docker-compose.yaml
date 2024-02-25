@@ -1,0 +1,36 @@
+version: '3'
+services:
+  app:
+    build:
+      context: ../
+      dockerfile: ./.devcontainer/app/Dockerfile
+    ports:
+      - "8080:80"
+    volumes:
+      - ../:/usr/src/app
+      - ../datastore:/mnt/datastore
+    working_dir: /usr/src/app
+    environment:
+      - DB_HOST=db
+      - DB_USER=dev
+      - DB_PASSWORD=dev
+      - DB_NAME=dev
+      - LOG_LEVEL=1
+    command: sleep infinity
+  db:
+    image: mariadb:lts
+    environment:
+      - MARIADB_ROOT_PASSWORD=dev
+      - MARIADB_DATABASE=dev
+      - MARIADB_USER=dev
+      - MARIADB_PASSWORD=dev
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8081:80
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3306
+      - PMA_USER=root
+      - PMA_PASSWORD=dev

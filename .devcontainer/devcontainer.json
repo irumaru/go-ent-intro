@@ -1,0 +1,7 @@
+{
+	"name": "Go development container",
+	"dockerComposeFile": "docker-compose.yaml",
+	"service": "app",
+	"workspaceFolder": "/usr/src/app"
+	//"extensions": ["dbaeumer.vscode-eslint"]
+}
