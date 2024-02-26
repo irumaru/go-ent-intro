@@ -2,6 +2,10 @@
 	"name": "Go development container",
 	"dockerComposeFile": "docker-compose.yaml",
 	"service": "app",
-	"workspaceFolder": "/usr/src/app"
+	"workspaceFolder": "/usr/src/app",
+	"forwardPorts": [
+		8080,
+		"phpmyadmin:8081"
+	]
 	//"extensions": ["dbaeumer.vscode-eslint"]
 }

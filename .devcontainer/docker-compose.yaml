@@ -4,8 +4,6 @@ services:
     build:
       context: ../
       dockerfile: ./.devcontainer/app/Dockerfile
-    ports:
-      - "8080:80"
     volumes:
       - ../:/usr/src/app
       - ../datastore:/mnt/datastore
@@ -27,10 +25,10 @@ services:
   phpmyadmin:
     image: phpmyadmin
     restart: always
-    ports:
-      - 8081:80
+    # portsはdevcontainer.json/forwardPortsで設定する
     environment:
       - PMA_HOST=db
       - PMA_PORT=3306
       - PMA_USER=root
       - PMA_PASSWORD=dev
+      - APACHE_PORT=8081
