@@ -7,6 +7,7 @@ import (
 
 	"github.com/go-sql-driver/mysql"
 	"github.com/irumaru/go-ent-intro/ent"
+	"github.com/irumaru/go-ent-intro/ent/migrate"
 )
 
 func main() {
@@ -32,7 +33,11 @@ func main() {
 	defer client.Close()
 
 	// Run the auto migration tool.
-	if err := client.Schema.Create(context.Background()); err != nil {
+	if err := client.Schema.Create(
+		context.Background(),
+		migrate.WithDropColumn(true),
+		migrate.WithDropIndex(true),
+	); err != nil {
 		log.Fatalf("failed creating schema resources: %v", err)
 	}
 
