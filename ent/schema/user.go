@@ -17,8 +17,6 @@ func (User) Fields() []ent.Field {
 			Positive(),
 		field.String("name").
 			Default("unknown"),
-		field.String("password_hash").
-			Optional(),
 	}
 }
 
